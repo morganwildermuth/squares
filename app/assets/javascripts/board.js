@@ -1,5 +1,3 @@
-
-
 var Board = (function() {
 
   var buildRow = function(rowNum){
