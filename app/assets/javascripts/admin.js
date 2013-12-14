@@ -70,7 +70,6 @@ var removeUser = function(user){
 
 var setLink = function(){
 	var link = window.location.href.match(/(^.+)(?=admin)/)[0] + 'signup'
-	console.log(link)
 	$('.board-link').text(link)
 }
 
