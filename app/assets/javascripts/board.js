@@ -11,6 +11,14 @@ var Board = (function() {
           )
   }
 
+  var updateCell = function(name,location) {
+    var row = location[0]
+    var col = location[2]
+    var $cell = $('.cell[data-row=' + row + '][data-col=' + col + ']')
+    $cell.addClass('taken')
+    $cell.text(name)
+  }
+
   return {
     build: function(){
       for (var rowNum = 0; rowNum <= 9; rowNum++) {
@@ -23,8 +31,15 @@ var Board = (function() {
         }
       }
     },
-    updateCells: function() {
-
+    updateDOM: function(locationsObject) {
+      var names = Object.keys(locationsObject)
+      for(i=0;i<names.length;i++) {
+        var name = names[i]
+        var locations = locationsObject[name]
+        for(m=0;m<locations.length;m++) {
+          updateCell(name,locations[m])
+        }
+      }
     }
   }
 })()
