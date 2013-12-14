@@ -40,7 +40,7 @@ var selectCell = function(clickEvent) {
   if ( !$cell.hasClass('taken') ) {
 
     $cell.addClass('taken')
-    $cell.text('taken')
+    $cell.text(User.name)
 
     var row = $cell.attr('data-row')
     var col = $cell.attr('data-col')
