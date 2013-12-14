@@ -5,6 +5,9 @@ var Board = (function() {
   }
 
   var buildCell = function(rowNum, colNum){
+    if (rowNum === -1 && colNum === -1) {
+      return $('<a>', {class: 'blank','data-row': rowNum, 'data-col': colNum})
+    }
     if (rowNum === -1 || colNum === -1) {
       return $('<a>', {class: 'header','data-row': rowNum, 'data-col': colNum})
     }
@@ -19,6 +22,14 @@ var Board = (function() {
     $cell.text(name)
   }
 
+  var setHeaders = function(headerCells) {
+      var headers = Randomizer.assignNumbers()
+      $.each(headerCells,function(index,cell) {
+        cell.innerText = headers[index]
+      })
+    }
+
+
   return {
     build: function(){
       for (var rowNum = -1; rowNum <= 9; rowNum++) {
@@ -30,7 +41,6 @@ var Board = (function() {
           row.append(col)
         }
       }
-      buildHeaderRow()
     },
     updateDOM: function(locationsObject) {
       var names = Object.keys(locationsObject)
@@ -42,9 +52,11 @@ var Board = (function() {
         }
       }
     },
-    setHeaders: function() {
-      // create row
-      // create column
+    setAllHeaders: function() {
+      var row = $('.header[data-row=-1]')
+      var col = $('.header[data-col=-1]')
+      setHeaders(row)
+      setHeaders(col)
     }
   }
 })()
