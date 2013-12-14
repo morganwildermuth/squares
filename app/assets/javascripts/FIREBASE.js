@@ -1,5 +1,6 @@
 $( document ).ready(function() {
   addSubmitListener()
+  addInitListener()
 })
 
 var Sync = (function() {
@@ -27,4 +28,8 @@ var addSubmitListener = function() {
 var addUser = function() {
   var $userName = $('#textfield').val()
   Sync.addUserToFirebase($userName)
+}
+
+var addInitListener = function() {
+  $('#assign').on('click',assignNumbers)
 }
