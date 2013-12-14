@@ -22,6 +22,24 @@ var createSync = function() {
     },
     createRoomConnection: function() {
       roomNode = database.child(room)
+      roomNode.on('child_added', Sync.updateBoard)
+    },
+    updateBoard: function(data){
+      var transformedData = Sync.createBoardTransformation(data)
+      // Board.updateDOM(transformedData)
+    },
+    createBoardTransformation: function(data){
+      var results = {}
+      var firebaseObject = data.val()
+      var firebaseKeys = Object.keys(firebaseObject)
+      for(i=0;i<firebaseKeys.length; i++) {
+        var user = firebaseKeys[i]
+        if (firebaseObject[user]['locations'].length != 4){
+          var locations = Object.keys(firebaseObject[user]['locations'])
+          results[user] = locations
+        }
+      }
+      return results
     }
   }
 
