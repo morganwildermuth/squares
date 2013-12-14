@@ -16,20 +16,29 @@ var loadUsers = function(){
 }
 
 var clearUserTable = function(){
-	$('.user-list').children().remove()
+	$('.pending-list').children().remove()
+	$('.confirmed-list').children().remove()
 }
 
 var buildUserTable = function(usersData, price){
 	$.each(usersData, function(name, data){
 		var numSelectedSquares = Object.keys(data.locations).length
 
-		$('.user-list').append(
-			$('<div>', {class: name}).append(
-				$('<button>', {class: 'remove'}).text('remove'),
-				$('<p>').text(name + ' owes $' + price*numSelectedSquares),
-				$('<button>', {class: 'confirm'}).text('confirm')
+		if(data.payment === 'unpaid'){
+			$('.pending-list').append(
+				$('<div>', {class: name}).append(
+					$('<button>', {class: 'remove'}).text('remove'),
+					$('<p>').text(name + ' owes $' + price*numSelectedSquares),
+					$('<button>', {class: 'confirm'}).text('confirm')
+					)
 				)
-			)
+		} else {
+			$('.confirmed-list').append(
+				$('<div>', {class: name}).append(
+					$('<p>').text(name + ' paid $' + price*numSelectedSquares)
+					)
+				)
+		}
 	})
 }
 
