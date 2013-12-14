@@ -73,7 +73,39 @@ var setLink = function(){
 	$('.board-link').text(link)
 }
 
+var bindScoreButtons = function(){
+	$('.score').on('click', function(){
+		var $self = $(this)
+		if($self.attr('data-conf') === 'nfc'){
+			var score = Number($self.attr('data-val')) + Number($('.nfc-score').text())
+			updateScore({'nfc': score, 'afc': Number($('.afc-score').text())})
+		} else {
+			var score = Number($self.attr('data-val')) + Number($('.afc-score').text())
+			updateScore({'afc': score, 'nfc': Number($('.nfc-score').text())})
+		}
+	})
+}
+
+var updateScore = function(scores){
+	var db = new Firebase('https://fb-squares.firebaseio.com/')
+	var room = window.location.href.match(/\/([\w-]+)(?=\/admin)/)[0]
+	db.child(room).child('settings').child('score').set(scores)
+}
+
+var getScore = function(){
+	var db = new Firebase('https://fb-squares.firebaseio.com/')
+	var room = window.location.href.match(/\/([\w-]+)(?=\/admin)/)[0]
+
+	db.child(room).child('settings').child('score').on('value', function(snapshot){
+		var scores = snapshot.val()
+		$('.nfc-score').text(scores.nfc)
+		$('.afc-score').text(scores.afc)
+	})
+}
+
 $(document).ready(function(){
 	loadUsers()
 	setLink()
+	getScore()
+	bindScoreButtons()
 })
