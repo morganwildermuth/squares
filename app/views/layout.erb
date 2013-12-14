@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 
+  <!-- styles -->
+  <link href="stylesheets/layout.css" rel="stylesheet">
+
 	<!-- vendor js -->
 	<script src="/javascripts/jquery-1.10.2.min.js"></script>
 	<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
@@ -12,8 +15,16 @@
   <script src="/javascripts/user.js"></script>
   <script src="/javascripts/landing-page.js"></script>
 	<script src="/javascripts/board.js"></script>
+
+  <!-- bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<%= yield %>
+  <%= erb :_navbar %>
+  <div class="container">
+  	<%= yield %>
+  </div>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
