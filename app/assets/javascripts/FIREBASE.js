@@ -22,10 +22,15 @@ var createSync = function() {
     createRoomConnection: function() {
       roomNode = database.child(room)
       roomNode.on('child_added', Sync.updateBoard)
+      roomNode.on('child_added', Sync.checkForCompletion)
+
     },
     updateBoard: function(data){
       var transformedData = Sync.createBoardTransformation(data)
       Board.updateDOM(transformedData)
+    },
+    checkForCompletion: function(database) {
+      debugger
     },
     createBoardTransformation: function(data){
       var results = {}

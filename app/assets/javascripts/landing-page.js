@@ -35,8 +35,8 @@ var sync = {
 var createBoard = function(attrs){
 	sync.init()
 
+	sync.board.child('users').set('')
 	var settings = sync.board.child('settings')
-
 	settings.child('name').set(attrs.boardName)
 	settings.child('price').set(attrs.squarePrice)
 	settings.child('score').set( {'nfc': '0', 'afc': '0'} )

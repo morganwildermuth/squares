@@ -52,7 +52,7 @@ var Board = (function() {
         }
       }
     },
-    setAllHeaders: function() {
+    displayAllHeaders: function() {
       var row = $('.header[data-row=-1]')
       var col = $('.header[data-col=-1]')
       setHeaders(row)
