@@ -1,25 +1,34 @@
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
 
-// ToDo: Compress the while and if into a single conditional
-function popNewRandomInt(arrG, func, min, max) {
-  var length0 = arrG.length
-  while (arrG.length < length0 + 1) {
-    var randM = func(min, max)
-    if ( arrG.indexOf(randM) < 0) {
-      arrG.push(randM)
+
+var Randomizer = (function() {
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  function popNewRandomInt(arrG, func, min, max) {
+    var length0 = arrG.length
+    while (arrG.length < length0 + 1) {
+      var randM = func(min, max)
+      if ( arrG.indexOf(randM) < 0) {
+        arrG.push(randM)
+      }
     }
   }
-}
 
-var assignNumbers = function() {
-  var theNumbers = []
-  for (var i = 0; i <= 9; i++) {
-    popNewRandomInt(theNumbers, getRandomInt, 0, 9)
+  return {
+    assignNumbers: function() {
+      var theNumbers = []
+      for (var i = 0; i <= 9; i++) {
+        popNewRandomInt(theNumbers, getRandomInt, 0, 9)
+      }
+      return theNumbers
+    }
   }
-  return theNumbers
-}
+
+})()
+
+
 
 var buildRow = function(rowNum){
   return $('<div>', {class: 'row' + rowNum})
@@ -33,7 +42,7 @@ var buildCell = function(rowNum, colNum, txt){
 }
 
 // ToDo: re-use code from board.js by recombining
-var DisplayNumbers = function() {
+var SetNumbers = function() {
   var row = buildRow(-1)
   var randValues = assignNumbers()
 
