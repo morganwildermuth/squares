@@ -26,7 +26,7 @@ var createSync = function() {
     },
     updateBoard: function(data){
       var transformedData = Sync.createBoardTransformation(data)
-      // Board.updateDOM(transformedData)
+      Board.updateDOM(transformedData)
     },
     createBoardTransformation: function(data){
       var results = {}
