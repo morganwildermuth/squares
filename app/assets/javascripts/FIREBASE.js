@@ -14,7 +14,6 @@ var Sync = (function() {
       database.child(room).child(name).set( {'payment': 'unpaid', 'locations' : 'none'} );
     },
     assignCell: function(row, col) {
-      debugger
       database.child(room).child(username).child('locations').child(row + '-' + col).set('true')
     },
   }
