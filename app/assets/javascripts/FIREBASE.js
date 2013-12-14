@@ -1,21 +1,28 @@
 $( document ).ready(function() {
   addSubmitListener()
-  // database.on()
-  if( $('.board').length > 0 ) { Sync = createSync() }
+  if( $('.board').length > 0 ) {
+    Sync = createSync()
+    Sync.createRoomConnection()
+   }
+
 })
 
 var createSync = function() {
 
   var database = new Firebase('https://fb-squares.firebaseio.com/');
   var room = window.location.href.match(/\/([\w-]+)(?=\/signup)/)[0]
+  var roomNode
 
   return {
     addUserToFirebase: function() {
-      database.child(room).child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
+      roomNode.child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
     },
     assignCell: function(row, col) {
-      database.child(room).child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
+      roomNode.child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
     },
+    createRoomConnection: function() {
+      roomNode = database.child(room)
+    }
   }
 
 }
