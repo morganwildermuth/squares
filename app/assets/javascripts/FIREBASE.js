@@ -1,21 +1,46 @@
 $( document ).ready(function() {
   addSubmitListener()
-  // database.on()
-  if( $('.board').length > 0 ) { Sync = createSync() }
+  if( $('.board').length > 0 ) {
+    Sync = createSync()
+    Sync.createRoomConnection()
+   }
+
 })
 
 var createSync = function() {
 
   var database = new Firebase('https://fb-squares.firebaseio.com/');
   var room = window.location.href.match(/\/([\w-]+)(?=\/signup)/)[0]
+  var roomNode
 
   return {
     addUserToFirebase: function() {
-      database.child(room).child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
+      roomNode.child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
     },
     assignCell: function(row, col) {
-      database.child(room).child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
+      roomNode.child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
     },
+    createRoomConnection: function() {
+      roomNode = database.child(room)
+      roomNode.on('child_added', Sync.updateBoard)
+    },
+    updateBoard: function(data){
+      var transformedData = Sync.createBoardTransformation(data)
+      Board.updateDOM(transformedData)
+    },
+    createBoardTransformation: function(data){
+      var results = {}
+      var firebaseObject = data.val()
+      var firebaseKeys = Object.keys(firebaseObject)
+      for(i=0;i<firebaseKeys.length; i++) {
+        var user = firebaseKeys[i]
+        if (firebaseObject[user]['locations'].length != 4){
+          var locations = Object.keys(firebaseObject[user]['locations'])
+          results[user] = locations
+        }
+      }
+      return results
+    }
   }
 
 }
