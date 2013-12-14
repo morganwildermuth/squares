@@ -59,6 +59,13 @@ var removeUser = function(user){
 	db.child(room).child('users').child(user).remove()
 }
 
+var setLink = function(){
+	var link = window.location.href.match(/(^.+)(?=admin)/)[0] + 'signup'
+	console.log(link)
+	$('.board-link').text(link)
+}
+
 $(document).ready(function(){
 	loadUsers()
+	setLink()
 })
