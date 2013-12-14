@@ -18,33 +18,39 @@ var assignNumbers = function() {
   for (var i = 0; i <= 9; i++) {
     popNewRandomInt(theNumbers, getRandomInt, 0, 9)
   }
-  console.log(theNumbers)
+  return theNumbers
+}
+
+var buildRow = function(rowNum){
+  return $('<div>', {class: 'row' + rowNum})
+}
+
+var buildCell = function(rowNum, colNum, txt){
+  return $('<span>', {class: 'col' + colNum}).append(
+          $('<a>', {class: 'header','data-row': rowNum, 'data-col': colNum}).text(txt)
+
+        )
 }
 
 // ToDo: re-use code from board.js by recombining
-var DisplayNumbers = (function() {
-  var buildRow = function(rowNum){
-    return $('<div>', {class: 'row' + rowNum})
+var DisplayNumbers = function() {
+  var row = buildRow(-1)
+  var randValues = assignNumbers()
+
+  $('.board').prepend(row)
+
+  for (var colNum = 0; colNum <= 9; colNum++) {
+    var col = buildCell(-1, colNum, randValues[colNum])
+    row.prepend(col)
   }
 
-  var buildCell = function(rowNum, colNum, txt){
-    return $('<span>', {class: 'col' + colNum}).append(
-            $('<a>', {class: 'header','data-row': rowNum, 'data-col': colNum}).text(txt)
+  var morRands = assignNumbers()
 
-          )
+  for (var rowNum = 0; rowNum <= 9; rowNum++) {
+    var row = $('.board', {class: 'row' + rowNum})
+    console.log(row)
+    var cell = buildCell(rowNum, -1, morRands[rowNum])
+    row.prepend(cell)
   }
 
-  return {
-    build: function(){
-      var row = buildRow(-1)
-      console.log("here")
-      var rowNums = assignNumbers
-      $('.board').prepend(row)
-
-      for (var colNum = 0; colNum <= 9; colNum++) {
-        var col = buildCell(-1, colNum, rowNums[colNum])
-        row.prepend(col)
-      }
-    }
-  }
-})()
+}

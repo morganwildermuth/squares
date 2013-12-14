@@ -31,5 +31,5 @@ var addUser = function() {
 }
 
 var addInitListener = function() {
-  $('#assign').on('click',DisplayNumbers.build())
+  $('#assign').on('click',DisplayNumbers)
 }
