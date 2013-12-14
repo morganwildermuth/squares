@@ -4,7 +4,7 @@ var Board = (function() {
     return $('<div>', {class: 'row' + rowNum})
   }
 
-  var buildColumn = function(rowNum, colNum){
+  var buildCell = function(rowNum, colNum){
     if (rowNum === -1 || colNum === -1) {
       return $('<a>', {class: 'header','data-row': rowNum, 'data-col': colNum})
     }
@@ -26,7 +26,7 @@ var Board = (function() {
         $('.board').append(row)
 
         for (var colNum = -1; colNum <= 9; colNum++) {
-          var col = buildColumn(rowNum, colNum)
+          var col = buildCell(rowNum, colNum)
           row.append(col)
         }
       }
