@@ -12,7 +12,7 @@ var Sync = (function() {
       database.child(room).child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
     },
     assignCell: function(row, col) {
-      database.child(room).child(User.name).child('locations').child(row + '-' + col).set('true')
+      database.child(room).child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
     },
   }
 
