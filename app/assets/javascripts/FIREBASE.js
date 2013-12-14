@@ -10,7 +10,7 @@ var Sync = (function() {
 
   return {
     addUserToFirebase: function(name) {
-      database.child(room).child(name).set('');
+      database.child(room).child(name).set( {'payment': 'unpaid', 'locations' : 'none'} );
     }
   }
 
