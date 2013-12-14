@@ -5,10 +5,10 @@ var Board = (function() {
   }
 
   var buildColumn = function(rowNum, colNum){
-    return $('<span>', {class: 'col' + colNum}).append(
-            $('<a>', {class: 'cell','data-row': rowNum, 'data-col': colNum}).text(' open ')
-
-          )
+    if (rowNum === -1 || colNum === -1) {
+      return $('<a>', {class: 'header','data-row': rowNum, 'data-col': colNum})
+    }
+    return $('<a>', {class: 'cell','data-row': rowNum, 'data-col': colNum}).text(' open ')
   }
 
   var updateCell = function(name,location) {
@@ -21,15 +21,16 @@ var Board = (function() {
 
   return {
     build: function(){
-      for (var rowNum = 0; rowNum <= 9; rowNum++) {
+      for (var rowNum = -1; rowNum <= 9; rowNum++) {
         var row = buildRow(rowNum)
         $('.board').append(row)
 
-        for (var colNum = 0; colNum <= 9; colNum++) {
+        for (var colNum = -1; colNum <= 9; colNum++) {
           var col = buildColumn(rowNum, colNum)
           row.append(col)
         }
       }
+      buildHeaderRow()
     },
     updateDOM: function(locationsObject) {
       var names = Object.keys(locationsObject)
@@ -40,6 +41,10 @@ var Board = (function() {
           updateCell(name,locations[m])
         }
       }
+    },
+    setHeaders: function() {
+      // create row
+      // create column
     }
   }
 })()
