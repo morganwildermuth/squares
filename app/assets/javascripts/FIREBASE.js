@@ -1,8 +1,10 @@
 $( document ).ready(function() {
   addSubmitListener()
+  // database.on()
+  if( $('.board').length > 0 ) { Sync = createSync() }
 })
 
-var Sync = (function() {
+var createSync = function() {
 
   var database = new Firebase('https://fb-squares.firebaseio.com/');
   var room = window.location.href.match(/\/([\w-]+)(?=\/signup)/)[0]
@@ -16,7 +18,7 @@ var Sync = (function() {
     },
   }
 
-})()
+}
 
 var addSubmitListener = function() {
   $('#input').on('click',addUser)
