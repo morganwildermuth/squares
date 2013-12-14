@@ -4,7 +4,6 @@ $( document ).ready(function() {
     Sync = createSync()
     Sync.createRoomConnection()
    }
-
 })
 
 var createSync = function() {
