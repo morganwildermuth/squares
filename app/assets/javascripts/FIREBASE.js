@@ -1,6 +1,5 @@
 $( document ).ready(function() {
   addSubmitListener()
-  addInitListener()
   if( $('.board').length > 0 ) {
     Sync = createSync()
     Sync.createRoomConnection()
