@@ -16,20 +16,29 @@ var loadUsers = function(){
 }
 
 var clearUserTable = function(){
-	$('.user-list').children().remove()
+	$('.pending-list').children().remove()
+	$('.confirmed-list').children().remove()
 }
 
 var buildUserTable = function(usersData, price){
 	$.each(usersData, function(name, data){
 		var numSelectedSquares = Object.keys(data.locations).length
 
-		$('.user-list').append(
-			$('<div>', {class: name}).append(
-				$('<button>', {class: 'remove'}).text('remove'),
-				$('<p>').text(name + ' owes $' + price*numSelectedSquares),
-				$('<button>', {class: 'confirm'}).text('confirm')
+		if(data.payment === 'unpaid'){
+			$('.pending-list').append(
+				$('<div>', {class: name}).append(
+					$('<button>', {class: 'remove'}).text('remove'),
+					$('<p>').text(name + ' owes $' + price*numSelectedSquares),
+					$('<button>', {class: 'confirm'}).text('confirm')
+					)
 				)
-			)
+		} else {
+			$('.confirmed-list').append(
+				$('<div>', {class: name}).append(
+					$('<p>').text(name + ' paid $' + price*numSelectedSquares)
+					)
+				)
+		}
 	})
 }
 
@@ -59,6 +68,44 @@ var removeUser = function(user){
 	db.child(room).child('users').child(user).remove()
 }
 
+var setLink = function(){
+	var link = window.location.href.match(/(^.+)(?=admin)/)[0] + 'signup'
+	$('.board-link').text(link)
+}
+
+var bindScoreButtons = function(){
+	$('.score').on('click', function(){
+		var $self = $(this)
+		if($self.attr('data-conf') === 'nfc'){
+			var score = Number($self.attr('data-val')) + Number($('.nfc-score').text())
+			updateScore({'nfc': score, 'afc': Number($('.afc-score').text())})
+		} else {
+			var score = Number($self.attr('data-val')) + Number($('.afc-score').text())
+			updateScore({'afc': score, 'nfc': Number($('.nfc-score').text())})
+		}
+	})
+}
+
+var updateScore = function(scores){
+	var db = new Firebase('https://fb-squares.firebaseio.com/')
+	var room = window.location.href.match(/\/([\w-]+)(?=\/admin)/)[0]
+	db.child(room).child('settings').child('score').set(scores)
+}
+
+var getScore = function(){
+	var db = new Firebase('https://fb-squares.firebaseio.com/')
+	var room = window.location.href.match(/\/([\w-]+)(?=\/admin)/)[0]
+
+	db.child(room).child('settings').child('score').on('value', function(snapshot){
+		var scores = snapshot.val()
+		$('.nfc-score').text(scores.nfc)
+		$('.afc-score').text(scores.afc)
+	})
+}
+
 $(document).ready(function(){
 	loadUsers()
+	setLink()
+	getScore()
+	bindScoreButtons()
 })
