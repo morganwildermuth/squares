@@ -9,3 +9,7 @@ end
 get '/:room/signup' do
   erb :signup
 end
+
+get '/:room/admin' do
+	erb :admin
+end

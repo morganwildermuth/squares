@@ -4,8 +4,13 @@ var handleSubmitClick = function(){
 			showSettingInputs()
 		} else {
 			createBoard(getSettingInputs())
+			goToAdminPage()
 		}
 	})
+}
+
+var goToAdminPage = function(){
+	location.href='/' + sync.board.name() + '/admin'
 }
 
 var showSettingInputs = function(){
