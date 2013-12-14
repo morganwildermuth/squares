@@ -54,7 +54,3 @@ var addUser = function() {
   User.setName(userName)
   Sync.addUserToFirebase(userName)
 }
-
-var addInitListener = function() {
-  $('#assign').on('click',DisplayNumbers)
-}
