@@ -9,6 +9,10 @@ body {
   background-size: cover;
 }
 
+.navbar-inverse {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
 .jumbotron {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
