@@ -4,7 +4,11 @@ html, body {
 
 body {
   padding-top: 70px;
-  background-image: url('../images/metlife2.jpg');
+  background-image: url('http://www.libertychurchnyc.com/wp-content/uploads/2013/01/image.jpeg');
+  /*background-image: url('../images/metlife2.jpg');*/
+  /*background-image: url('http://www.wallpaperarchives.net/wp-content/uploads/2013/10/2014-Super-Bowl-Commercials-Wallpaper.jpg');*/
+  /*background-image: url('http://static.nfl.com/static/content//browser/superbowl/47/sb47-bg.jpg');*/
+  /*background-image: url('http://quintevents.com/assets/resources/437/large/QuintEvents-NFL-On-Location-Super-Bowl-XLVIII-2014-New-York-New-Jersey.jpg');*/
   /*background-color: rgb(220, 220, 220);*/
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,7 +20,7 @@ body {
 }
 
 .jumbotron {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
     font-family: 'Signika Negative', sans-serif;
 }
@@ -26,8 +30,12 @@ h1, h2, h5, h6 {
   font-family: 'Droid Sans', sans-serif;
 }
 
-#admin_hdr {
+h1 {
   margin-bottom: 20px;
+}
+
+.create-board {
+  margin-top: px;
 }
 
 /*images */
