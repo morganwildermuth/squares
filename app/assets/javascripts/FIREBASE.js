@@ -53,7 +53,7 @@ var createSync = function() {
         user = users[i]
         count += locData[user].length
       }
-      if(count > 10) {
+      if(count === 100) {
         var row = database.val().settings.headers.rows
         var col = database.val().settings.headers.cols
         Board.displayAllHeaders(row,col)
