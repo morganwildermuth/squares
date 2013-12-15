@@ -12,7 +12,7 @@ body {
   /*background-color: rgb(220, 220, 220);*/
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Droid Sans', sans-serif;
+  font-family: 'Signika Negative', sans-serif;
 }
 
 .navbar-inverse {
@@ -20,9 +20,9 @@ body {
 }
 
 .jumbotron {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
-    font-family: 'Signika Negative', sans-serif;
+  font-family: 'Droid Sans', sans-serif;
 }
 
 /*headers*/
@@ -37,6 +37,29 @@ h1 {
 .create-board {
   margin-top: px;
 }
+
+#board_btn {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+#link_share {
+  font-family: 'Droid Sans', sans-serif;
+  margin-bottom: 20px;
+}
+
+.col-md-8 .col-md-offset-2 {
+  margin-bottom: 20px;
+}
+
+#input {
+  margin-bottom: 10px;
+}
+
+#textfield {
+  margin-bottom: 10px;
+}
+
 
 /*images */
 /*.img-sm {

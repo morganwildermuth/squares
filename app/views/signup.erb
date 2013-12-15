@@ -1,7 +1,14 @@
-"hello world"
-<%= erb :_navbar %>
+<div class="container">
+  <%= erb :_navbar %>
 
-<input id="textfield" type="text">
-<input id="input" type="submit">
+  <div class="admin_well">
+    <div class="jumbotron col-md-8 col-md-offset-2">
+      <h2 class="text-center">Your Fantasy Square</h2>
+      <input class="form-control" id="textfield" type="text" placeholder="Enter bet amount here...">
+      <input class="btn btn-primary btn-sm btn-block" id="input" type="submit">
 
-<div class="board"></div>
+      <div class="board"></div>
+
+    </div>
+  </div>
+</div>
