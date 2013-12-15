@@ -59,7 +59,7 @@ var Board = (function() {
       setHeaders(colCells,col)
     },
     resetBoard: function() {
-      $('.cell').text('open').removeClass('taken')
+      $('.cell').text('open').removeClass('*').addClass('cell')
     }
   }
 })()
