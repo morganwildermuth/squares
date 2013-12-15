@@ -107,9 +107,11 @@ var getScore = function(){
 	})
 }
 
-$(document).ready(function(){
-	loadUsers()
-	setLink()
-	getScore()
-	bindScoreButtons()
+$(document).ready(function() {
+	if( $('.board-link').length != 0 ) {
+		loadUsers()
+		setLink()
+		getScore()
+		bindScoreButtons()
+	}
 })
