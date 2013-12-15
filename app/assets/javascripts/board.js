@@ -36,20 +36,19 @@ var Board = (function() {
       for (var rowNum = -1; rowNum <= 9; rowNum++) {
         var row = buildRow(rowNum)
         $('.board').append(row)
-
         for (var colNum = -1; colNum <= 9; colNum++) {
           var col = buildCell(rowNum, colNum)
           row.append(col)
         }
       }
     },
-    updateDOM: function(locationsObject) {
+    updateDOM: function(locationsObject,colorsObject) {
       var names = Object.keys(locationsObject)
       for(i=0;i<names.length;i++) {
         var name = names[i]
         var locations = locationsObject[name]
         for(m=0;m<locations.length;m++) {
-          updateCell(name,locations[m])
+          updateCell(name,locations[m],colorsObject[name])
         }
       }
     },
