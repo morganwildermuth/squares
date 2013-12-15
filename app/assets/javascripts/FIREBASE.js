@@ -26,6 +26,19 @@ var createSync = function() {
       return results
   }
 
+  var createColorsObject = function(usersObject) {
+    var users = usersObject.val()
+    var names = Object.keys(users)
+    var results = {}
+
+    for(i=0;i<names.length;i++) {
+      var name = names[i]
+      var color = users[name].color
+      results[name] = color
+    }
+    return results
+  }
+
   return {
     addUserToFirebase: function() {
       roomNode.child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
