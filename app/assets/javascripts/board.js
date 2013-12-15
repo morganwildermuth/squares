@@ -42,7 +42,7 @@ var Board = (function() {
       }
     },
     updateDOM: function(locationsObject) {
-      $('.cell').text('open')
+      $('.cell').text('open').removeClass('taken')
       var names = Object.keys(locationsObject)
       for(i=0;i<names.length;i++) {
         var name = names[i]
