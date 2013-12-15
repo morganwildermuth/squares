@@ -26,6 +26,19 @@ var createSync = function() {
       return results
   }
 
+  var createColorsObject = function(usersObject) {
+    var users = usersObject.val()
+    var names = Object.keys(users)
+    var results = {}
+
+    for(i=0;i<names.length;i++) {
+      var name = names[i]
+      var color = users[name].color
+      results[name] = color
+    }
+    return results
+  }
+
   return {
     addUserToFirebase: function() {
       roomNode.child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
@@ -38,13 +51,16 @@ var createSync = function() {
       roomNode.on('value', function(data) {
         var usersObject = data.child('users')
         Sync.updateBoard(usersObject)
-        Sync.checkForCompletion(data, usersObject)
-      })
+
+        if(User.name) { User.establishColor(data) }
+          Sync.checkForCompletion(data, usersObject)
+        })
     },
     updateBoard: function(usersObject){
       Board.resetBoard()
       var transformedData = createBoardTransformation(usersObject)
-      Board.updateDOM(transformedData)
+      var colorsObject = createColorsObject(usersObject)
+      Board.updateDOM(transformedData,colorsObject)
     },
     checkForCompletion: function(database,usersObject) {
       var locData = createBoardTransformation(usersObject)
@@ -63,6 +79,12 @@ var createSync = function() {
         $('.header').addClass('cell')
         $('.blank').addClass('cell')
       }
+    },
+    setUserColor: function(counter){
+      roomNode.child('users').child(User.name).child('color').set('color'+counter)
+    },
+    setCounter: function(counter){
+      roomNode.child('settings').child('colors').set(counter)
     }
   }
 
