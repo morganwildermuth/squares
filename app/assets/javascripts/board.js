@@ -14,11 +14,13 @@ var Board = (function() {
     return $('<a>', {class: 'cell','data-row': rowNum, 'data-col': colNum}).text(' open ')
   }
 
-  var updateCell = function(name,location) {
+  var updateCell = function(name,location,color) {
     var row = location[0]
     var col = location[2]
     var $cell = $('.cell[data-row=' + row + '][data-col=' + col + ']')
     $cell.addClass('taken')
+    $cell.addClass(color)
+
     $cell.text(name)
   }
 
