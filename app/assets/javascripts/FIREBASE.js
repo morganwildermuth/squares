@@ -12,22 +12,7 @@ var createSync = function() {
   var room = window.location.href.match(/\/([\w-]+)(?=\/signup)/)[0]
   var roomNode
 
-  return {
-    addUserToFirebase: function() {
-      roomNode.child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
-    },
-    assignCell: function(row, col) {
-      roomNode.child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
-    },
-    createRoomConnection: function() {
-      roomNode = database.child(room)
-      roomNode.on('child_added', Sync.updateBoard)
-    },
-    updateBoard: function(data){
-      var transformedData = Sync.createBoardTransformation(data)
-      Board.updateDOM(transformedData)
-    },
-    createBoardTransformation: function(data){
+  var createBoardTransformation = function(data){
       var results = {}
       var firebaseObject = data.val()
       var firebaseKeys = Object.keys(firebaseObject)
@@ -39,6 +24,40 @@ var createSync = function() {
         }
       }
       return results
+  }
+
+  return {
+    addUserToFirebase: function() {
+      roomNode.child('users').child(User.name).set( {'payment': 'unpaid', 'locations' : 'none'} );
+    },
+    assignCell: function(row, col) {
+      roomNode.child('users').child(User.name).child('locations').child(row + '-' + col).set('true')
+    },
+    createRoomConnection: function() {
+      roomNode = database.child(room)
+      roomNode.on('value', function(data) {
+        var usersObject = data.child('users')
+        Sync.updateBoard(usersObject)
+        Sync.checkForCompletion(data, usersObject)
+      })
+    },
+    updateBoard: function(usersObject){
+      var transformedData = createBoardTransformation(usersObject)
+      Board.updateDOM(transformedData)
+    },
+    checkForCompletion: function(database,usersObject) {
+      var locData = createBoardTransformation(usersObject)
+      var count = 0
+      var users = Object.keys(locData)
+      for(i=0;i<users.length;i++) {
+        user = users[i]
+        count += locData[user].length
+      }
+      if(count === 100) {
+        var row = database.val().settings.headers.rows
+        var col = database.val().settings.headers.cols
+        Board.displayAllHeaders(row,col)
+      }
     }
   }
 
