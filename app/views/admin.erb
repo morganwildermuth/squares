@@ -1,11 +1,15 @@
 <%= erb :_navbar %>
 
 <div class="admin_well">
-  <div class="jumbotron col-md-10 col-md-offset-1">
-  	<h2 class="text-center">Admin Page</h2>
+  <div class="jumbotron col-md-8 col-md-offset-2">
+
+  	<h1 class="text-center">Admin Page</h1>
+
   	<div class="row">
+
 			<div class="nfc-score-update col-md-6 text-center">
-				<span class="nfc-score"></span> <h2>NFC</h2>
+				<h2>NFC</h2>
+				<span class="nfc-score">0</span> pts<br>
 				<input type="button" class="score add-touchdown btn btn-primary" value="+7" data-val="7" data-conf="nfc" />
 				<input type="button" class="score add-fieldgoal btn btn-primary" value="+3" data-val="3" data-conf="nfc" />
 				<input type="button" class="score add-one btn btn-primary" value="+1" data-val="1" data-conf="nfc" />
@@ -13,7 +17,8 @@
 			</div>
 
 			<div class="afc-score-update col-md-6 text-center">
-				<span class="afc-score"></span> <h2>AFC</h2>
+				<h2>AFC</h2>
+				<span class="afc-score">0</span> pts<br>
 				<input type="button" class="score add-touchdown btn btn-primary" value="+7" data-val="7" data-conf="afc" />
 				<input type="button" class="score add-fieldgoal btn btn-primary" value="+3" data-val="3" data-conf="afc" />
 				<input type="button" class="score add-one btn btn-primary" value="+1" data-val="1" data-conf="afc" />
@@ -22,7 +27,7 @@
 		</div><br>
 
 		<div class="row">
-	  	<div class="col-md-6 col-md-offset-3">
+	  	<div class="col-md-8 col-md-offset-2">
 				<h5 class="text-center">Share your link:</h5>
 				<input class="share-link form-control" id="focusedInput" type="text" value="link url">
 			</div>
