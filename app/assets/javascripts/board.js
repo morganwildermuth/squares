@@ -42,7 +42,6 @@ var Board = (function() {
       }
     },
     updateDOM: function(locationsObject) {
-      $('.cell').text('open')
       var names = Object.keys(locationsObject)
       for(i=0;i<names.length;i++) {
         var name = names[i]
@@ -57,6 +56,9 @@ var Board = (function() {
       var colCells = $('.header[data-col=-1]')
       setHeaders(rowCells,row)
       setHeaders(colCells,col)
+    },
+    resetBoard: function() {
+      $('.cell').text('open').removeClass('taken')
     }
   }
 })()

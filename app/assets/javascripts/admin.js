@@ -107,9 +107,9 @@ var getScore = function(){
 	})
 }
 
-$(document).ready(function(){
-	loadUsers()
+$(document).ready(function() {
 	setLink()
+	loadUsers()
 	getScore()
 	bindScoreButtons()
 })
