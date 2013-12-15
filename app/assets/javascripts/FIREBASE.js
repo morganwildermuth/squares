@@ -42,6 +42,7 @@ var createSync = function() {
       })
     },
     updateBoard: function(usersObject){
+      Board.resetBoard()
       var transformedData = createBoardTransformation(usersObject)
       Board.updateDOM(transformedData)
     },
