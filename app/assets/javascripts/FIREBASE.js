@@ -51,13 +51,16 @@ var createSync = function() {
       roomNode.on('value', function(data) {
         var usersObject = data.child('users')
         Sync.updateBoard(usersObject)
-        Sync.checkForCompletion(data, usersObject)
-      })
+
+        if(User.name) { User.establishColor(data) }
+          Sync.checkForCompletion(data, usersObject)
+        })
     },
     updateBoard: function(usersObject){
       Board.resetBoard()
       var transformedData = createBoardTransformation(usersObject)
-      Board.updateDOM(transformedData)
+      var colorsObject = createColorsObject(usersObject)
+      Board.updateDOM(transformedData,colorsObject)
     },
     checkForCompletion: function(database,usersObject) {
       var locData = createBoardTransformation(usersObject)
