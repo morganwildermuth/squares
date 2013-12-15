@@ -79,6 +79,12 @@ var createSync = function() {
         $('.header').addClass('cell')
         $('.blank').addClass('cell')
       }
+    },
+    setUserColor: function(counter){
+      roomNode.child('users').child(User.name).child('color').set('color'+counter)
+    },
+    setCounter: function(counter){
+      roomNode.child('settings').child('colors').set(counter)
     }
   }
 
