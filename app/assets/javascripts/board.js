@@ -73,6 +73,7 @@ var selectCell = function(clickEvent) {
   if ( !$cell.hasClass('taken') ) {
 
     $cell.addClass('taken')
+    $cell.addClass(User.color)
     $cell.text(User.name)
 
     var row = $cell.attr('data-row')
