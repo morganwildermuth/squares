@@ -3,7 +3,7 @@ var loadUsers = function(){
 	var room = window.location.href.match(/\/([\w-]+)(?=\/admin)/)[0]
 	var price = 0
 
-	db.child(room).child('settings').child('price').once('value', function(snapshot){
+	db.child(room).child('settings').child ('price').once('value', function(snapshot){
 		price = snapshot.val()
 	})
 
