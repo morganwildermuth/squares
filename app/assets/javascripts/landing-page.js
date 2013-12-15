@@ -42,6 +42,7 @@ var createBoard = function(attrs){
 	settings.child('score').set( {'nfc': '0', 'afc': '0'} )
 	settings.child('headers').child('cols').set(Randomizer.assignNumbers())
 	settings.child('headers').child('rows').set(Randomizer.assignNumbers())
+	settings.child('colors').set(1)
 }
 
 var boardReady = function(callback){
