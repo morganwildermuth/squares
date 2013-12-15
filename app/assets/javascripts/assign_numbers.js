@@ -1,34 +1,23 @@
-
-
 var Randomizer = (function() {
 
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  function popNewRandomInt(arrG, func, min, max) {
-    var length0 = arrG.length
-    while (arrG.length < length0 + 1) {
-      var randM = func(min, max)
-      if ( arrG.indexOf(randM) < 0) {
-        arrG.push(randM)
-      }
+  function pushUniqueRandomInt(min, max, arry) {
+    var randInt = Math.floor(Math.random() * (max - min + 1) + min);
+    while (arry.indexOf(randInt) != -1) {
+      randInt = Math.floor(Math.random() * (max - min + 1) + min);
     }
+    arry.push(randInt)
   }
 
   return {
-    assignNumbers: function() {
-      var theNumbers = []
-      for (var i = 0; i <= 9; i++) {
-        popNewRandomInt(theNumbers, getRandomInt, 0, 9)
+    assignNumbers: function(min, max, arry) {
+      var startingLength = arry.length
+      for (var i = min; i <= (max - startingLength); i++) {
+        pushUniqueRandomInt(min, max, arry)
       }
-      return theNumbers
+      return arry
     }
   }
-
 })()
-
-
 
 var buildRow = function(rowNum){
   return $('<div>', {class: 'row' + rowNum})
@@ -37,11 +26,9 @@ var buildRow = function(rowNum){
 var buildCell = function(rowNum, colNum, txt){
   return $('<span>', {class: 'col' + colNum}).append(
           $('<a>', {class: 'header','data-row': rowNum, 'data-col': colNum}).text(txt)
-
         )
 }
 
-// ToDo: re-use code from board.js by recombining
 var SetNumbers = function() {
   var row = buildRow(-1)
   var randValues = assignNumbers()
