@@ -58,6 +58,10 @@ var createSync = function() {
         var row = database.val().settings.headers.rows
         var col = database.val().settings.headers.cols
         Board.displayAllHeaders(row,col)
+
+
+        $('.header').addClass('cell')
+        $('.blank').addClass('cell')
       }
     }
   }
