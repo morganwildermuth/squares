@@ -44,7 +44,6 @@ var SetNumbers = function() {
 
   for (var rowNum = 0; rowNum <= 9; rowNum++) {
     var row = $('.board', {class: 'row' + rowNum})
-    console.log(row)
     var cell = buildCell(rowNum, -1, morRands[rowNum])
     row.prepend(cell)
   }
