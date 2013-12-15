@@ -40,8 +40,8 @@ var createBoard = function(attrs){
 	settings.child('name').set(attrs.boardName)
 	settings.child('price').set(attrs.squarePrice)
 	settings.child('score').set( {'nfc': '0', 'afc': '0'} )
-	settings.child('headers').child('cols').set(Randomizer.assignNumbers())
-	settings.child('headers').child('rows').set(Randomizer.assignNumbers())
+	settings.child('headers').child('cols').set(Randomizer.assignNumbers(0,9,[]))
+	settings.child('headers').child('rows').set(Randomizer.assignNumbers(0,9,[]))
 	settings.child('colors').set(1)
 }
 
