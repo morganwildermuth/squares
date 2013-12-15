@@ -43,8 +43,9 @@ h1 {
   margin-bottom: 10px;
 }
 
-.share-link {
-  margin-bottom: 28px;
+#link_share {
+  font-family: 'Signika Negative', sans-serif;
+  margin-bottom: 20px;
 }
 
 /*images */
