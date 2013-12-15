@@ -1,27 +1,36 @@
 <%= erb :_navbar %>
 
-<div class="admin_jumbotron">
-  <div class="jumbotron">
+<div class="admin_well">
+  <div class="jumbotron col-md-10 col-md-offset-1">
+  	<div class="row">
 
-		<div class="nfc-score-update">
-			<span class="nfc-score"></span> NFC
-			<input type="button" class="score add-touchdown" value="+7" data-val="7" data-conf="nfc" />
-			<input type="button" class="score add-fieldgoal" value="+3" data-val="3" data-conf="nfc" />
-			<input type="button" class="score add-one" value="+1" data-val="1" data-conf="nfc" />
-			<input type="button" class="score subtract-one" value="-1" data-val="-1" data-conf="nfc" />
+			<div class="nfc-score-update col-md-6 text-center">
+				<span class="nfc-score"></span> <h2>NFC</h2>
+				<input type="button" class="score add-touchdown btn btn-primary" value="+7" data-val="7" data-conf="nfc" />
+				<input type="button" class="score add-fieldgoal btn btn-primary" value="+3" data-val="3" data-conf="nfc" />
+				<input type="button" class="score add-one btn btn-primary" value="+1" data-val="1" data-conf="nfc" />
+				<input type="button" class="score subtract-one btn btn-primary" value="-1" data-val="-1" data-conf="nfc" />
+			</div>
+
+			<div class="afc-score-update col-md-6 text-center">
+				<span class="afc-score"></span> <h2>AFC</h2>
+				<input type="button" class="score add-touchdown btn btn-primary" value="+7" data-val="7" data-conf="afc" />
+				<input type="button" class="score add-fieldgoal btn btn-primary" value="+3" data-val="3" data-conf="afc" />
+				<input type="button" class="score add-one btn btn-primary" value="+1" data-val="1" data-conf="afc" />
+				<input type="button" class="score subtract-one btn btn-primary" value="-1" data-val="-1" data-conf="afc" />
+			</div>
+		</div><br>
+
+		<form role="form">
+  	<div class="form-group">
+			<h5 class="text-center">Share your link:</h5>
+			<input class="share-link form-control" id="focusedInput" type="text" value="link url">
+
+		<p class="board-link text-center"></p>
+
+		</div>
 		</div>
 
-		<div class="afc-score-update">
-			<span class="afc-score"></span> AFC
-			<input type="button" class="score add-touchdown" value="+7" data-val="7" data-conf="afc" />
-			<input type="button" class="score add-fieldgoal" value="+3" data-val="3" data-conf="afc" />
-			<input type="button" class="score add-one" value="+1" data-val="1" data-conf="afc" />
-			<input type="button" class="score subtract-one" value="-1" data-val="-1" data-conf="afc" />
-		</div>
-
-		<p class="board-link"></p>
-
-		</br>
 
 		<div class="user-list">
 			<div class="pending-list"></div>

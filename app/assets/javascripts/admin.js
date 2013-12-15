@@ -70,7 +70,7 @@ var removeUser = function(user){
 
 var setLink = function(){
 	var link = window.location.href.match(/(^.+)(?=admin)/)[0] + 'signup'
-	$('.board-link').text(link)
+	$('.share-link').val(link)
 }
 
 var bindScoreButtons = function(){

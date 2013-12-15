@@ -4,7 +4,8 @@ html, body {
 
 body {
   padding-top: 70px;
-  background-image: url('../images/metlife2.jpg');
+  /*background-image: url('../images/metlife2.jpg');*/
+  background-color: rgb(220, 220, 220);
   background-repeat: no-repeat;
   background-size: cover;
 }
