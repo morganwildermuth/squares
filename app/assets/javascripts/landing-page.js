@@ -35,9 +35,13 @@ var sync = {
 var createBoard = function(attrs){
 	sync.init()
 
-	sync.board.child('settings').child('name').set(attrs.boardName)
-	sync.board.child('settings').child('price').set(attrs.squarePrice)
-	sync.board.child('settings').child('score').set( {'nfc': '0', 'afc': '0'} )
+	sync.board.child('users').set('')
+	var settings = sync.board.child('settings')
+	settings.child('name').set(attrs.boardName)
+	settings.child('price').set(attrs.squarePrice)
+	settings.child('score').set( {'nfc': '0', 'afc': '0'} )
+	settings.child('headers').child('cols').set(Randomizer.assignNumbers())
+	settings.child('headers').child('rows').set(Randomizer.assignNumbers())
 }
 
 var boardReady = function(callback){

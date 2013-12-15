@@ -22,7 +22,11 @@ var clearUserTable = function(){
 
 var buildUserTable = function(usersData, price){
 	$.each(usersData, function(name, data){
-		var numSelectedSquares = Object.keys(data.locations).length
+		var numSelectedSquares = 0
+
+		if (data.locations != 'none') {
+		  var numSelectedSquares = Object.keys(data.locations).length
+    }
 
 		if(data.payment === 'unpaid'){
 			$('.pending-list').append(
