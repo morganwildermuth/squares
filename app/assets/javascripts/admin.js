@@ -108,10 +108,8 @@ var getScore = function(){
 }
 
 $(document).ready(function() {
-	if( $('.board-link').length != 0 ) {
-		loadUsers()
-		setLink()
-		getScore()
-		bindScoreButtons()
-	}
+	setLink()
+	loadUsers()
+	getScore()
+	bindScoreButtons()
 })
