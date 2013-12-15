@@ -22,8 +22,7 @@ var Board = (function() {
     $cell.text(name)
   }
 
-  var setHeaders = function(headerCells) {
-      var headers = Randomizer.assignNumbers()
+  var setHeaders = function(headerCells,headers) {
       $.each(headerCells,function(index,cell) {
         cell.innerText = headers[index]
       })
@@ -43,6 +42,7 @@ var Board = (function() {
       }
     },
     updateDOM: function(locationsObject) {
+      $('.cell').text('open')
       var names = Object.keys(locationsObject)
       for(i=0;i<names.length;i++) {
         var name = names[i]
@@ -52,11 +52,11 @@ var Board = (function() {
         }
       }
     },
-    displayAllHeaders: function() {
-      var row = $('.header[data-row=-1]')
-      var col = $('.header[data-col=-1]')
-      setHeaders(row)
-      setHeaders(col)
+    displayAllHeaders: function(row,col) {
+      var rowCells = $('.header[data-row=-1]')
+      var colCells = $('.header[data-col=-1]')
+      setHeaders(rowCells,row)
+      setHeaders(colCells,col)
     }
   }
 })()
