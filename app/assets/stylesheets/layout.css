@@ -60,10 +60,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-
-/*images */
-/*.img-sm {
-  max-width: 14%;
-  height: auto;
-  vertical-align: 0%;
-}*/
+.board-name, .square-price {
+  margin:10px;
+}
