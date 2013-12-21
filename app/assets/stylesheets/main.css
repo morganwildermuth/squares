@@ -8,5 +8,6 @@
 	text-align: center;
 	border: 1px solid;
 	height: 60px;
-	width: 60px;
+	min-width: 50px;
+  max-width: 50px;
 }
