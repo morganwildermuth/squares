@@ -71,11 +71,11 @@ var addClickListener = function() {
 var selectCell = function(clickEvent) {
   var $cell = $( clickEvent.target )
   if ( !$cell.hasClass('taken') ) {
-
-    $cell.addClass('taken')
-    $cell.addClass(User.color)
-    $cell.text(User.name)
-
+    if (typeof User.name != 'undefined'){
+      $cell.addClass('taken')
+      $cell.addClass(User.color)
+      $cell.text(User.name)
+    }
     var row = $cell.attr('data-row')
     var col = $cell.attr('data-col')
     Sync.assignCell(row,col)
