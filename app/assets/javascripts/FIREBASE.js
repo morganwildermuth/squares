@@ -96,6 +96,10 @@ var addSubmitListener = function() {
 
 var addUser = function() {
   var userName = $('#textfield').val()
-  User.setName(userName)
-  Sync.addUserToFirebase(userName)
+  if (userName.length >= 5){
+    alert('Username must be 4 or less letters')
+  }else{
+    User.setName(userName)
+    Sync.addUserToFirebase(userName)
+  }
 }
