@@ -43,7 +43,7 @@ var Board = (function() {
       }
     },
     updateDOM: function(locationsObject,colorsObject) {
-      var names = Object.keys(locationsObject)
+      var names = Object.keys(locationsObject);
       for(i=0;i<names.length;i++) {
         var name = names[i]
         var locations = locationsObject[name]

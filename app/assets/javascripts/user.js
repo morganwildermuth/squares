@@ -1,6 +1,6 @@
 var User = {
   setName: function(textInput) {
-    this.name = textInput
+    this.name = textInput;
   },
   establishColor: function(data) {
     var name = User.name
@@ -13,8 +13,6 @@ var User = {
       Sync.setCounter(counter)
 
     }
-
     User.color = userColor
-
   }
 }
